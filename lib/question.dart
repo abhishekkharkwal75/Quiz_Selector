@@ -12,10 +12,13 @@ class Question extends StatelessWidget {
         width: double.infinity, //container takes the full width of screen now
         margin: EdgeInsets.all(
             15), //press control and hover over the EdgeInsets you will get link
-        child: Text(
-          questionText,
-          style: TextStyle(fontSize: 28),
-          textAlign: TextAlign.center,
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 50.0),
+          child: Text(
+            questionText,
+            style: TextStyle(fontSize: 28),
+            textAlign: TextAlign.center,
+          ),
         ));
   }
 }

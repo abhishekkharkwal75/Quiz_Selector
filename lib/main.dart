@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/result.dart';
 import './result.dart';
@@ -83,11 +84,27 @@ class _AviAppState extends State<AviApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Quiz Selector'),
-          backgroundColor: Colors.green[200],
-        ),
+            centerTitle: _questionIndex == 0 ? false : true,
+            title: Text('Quiz Selector'),
+            backgroundColor: Colors.green[200],
+            leading: _questionIndex != 0
+                ? IconButton(
+                    icon: Icon(CupertinoIcons.back),
+                    onPressed: () {
+                      if (_questionIndex == 0 || _totalScore == 0) {
+                        return null;
+                      } else {
+                        setState(() {
+                          _questionIndex = _questionIndex - 1;
+                          _totalScore = _totalScore - 1;
+                        });
+                      }
+                    },
+                  )
+                : null),
         body: _questionIndex < _questions.length
             ? //exception resolution easy way
             Quiz(
